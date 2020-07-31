@@ -7,7 +7,7 @@ import "react-drop-zone/dist/styles.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table } from 'reactstrap';
 import fileReaderPullStream from 'pull-file-reader';
-
+import ipfs from './ipfs';
 import "./App.css";
 
 class App extends Component {
@@ -60,6 +60,9 @@ class App extends Component {
   onDrop = async (file) => {
     try {
       const {contract, accounts} = this.state;
+      const stream = fileReaderPullStream(file);
+      const result = await ipfs.add(stream);
+      debugger;
     } catch (error) {
       console.log(error);
     }
